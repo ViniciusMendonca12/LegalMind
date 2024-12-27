@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+    <a class="navbar-brand" href="/dashboard">
+        <img src="/img/imagemlogo.png" alt="logo" class="navbar-logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>                
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="/analise-de-divergencia">Análise de Divergência</a>
+            </li> -->
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard">Tela inicial</a>
+            </li>
+            <span class="navbar-divider"></span>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/gerenciar-providencias">Gerenciar Providências</a>
+            </li>
+            <span class="navbar-divider"></span>
+            <li class="nav-item">
+                <a class="nav-link" href="/cadastrar-providencias">Cadastrar Providências</a>
+            </li>
+            <span class="navbar-divider"></span>
+            <li class="nav-item">
+                <a class="nav-link" href="/advExecutor">Petição</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav" style="margin-right: 50px; font-size: 22px;">
+            <span class="navbar-divider"></span>
+
+            <%if(idAdvogadoVinculado != 0){%>
+            <li class="nav-item">
+               <a class="nav-link"> <%= idAdvogadoVinculado.nome %></a>
+            </li>
+            <%} else{ %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Login</a>
+                 </li>
+            <%}%>
+
+        </ul>
+    </div>
+</nav>
+

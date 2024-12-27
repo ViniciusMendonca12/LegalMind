@@ -1,0 +1,63 @@
+/* body {
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: "Arial", sans-serif;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 350px;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.icon-user {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 37%;
+}
+
+input[type="email"],
+input[type="password"] {
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  margin-top: 10px;
+}
+
+input::placeholder {
+  color: #666;
+}
+
+.btn-primary {
+  background-color: #4a67e4;
+  border: none;
+  margin-left: 14%;
+  width: 70%;
+}
+.botao2 {
+  border: none;
+  margin-left: 38%;
+  width: 50%;
+  margin-top: 1%;
+}
+
+.form-check-label {
+  user-select: none; 
+}
+
+a {
+  text-decoration: none;
+  color: #4a67e4;
+}
+
+.Cadastro {
+  background-color: #4a67e4;
+  border: none;
+  margin-left: 35%;
+  margin-top: 2%;
+  color: #fff;
+} */

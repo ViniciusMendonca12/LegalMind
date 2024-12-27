@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Petições</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Century Schoolbook', serif;
+            display: flex;
+            flex-direction: column; /* Orienta os filhos da flexbox em coluna */
+            align-items: center; /* Centraliza os elementos horizontalmente */
+            justify-content: center; /* Centraliza os elementos verticalmente */
+            background: white;
+        }
+         .logo {
+            width: 20%;  /* fixa um tamanho específico */
+            height: auto;  /* mantém a proporção */
+            margin-top: -90%;
+            margin-left: 40%;
+        }
+
+        
+        .container {
+            width: 600px;
+            min-height: 600px;  /* define uma altura mínima para o container */
+        }
+
+        .header-text {
+            font-size: 14px;
+            text-align: center;
+            margin: -60px 0 20px;
+        }
+        .body-text {
+            width: 600px; /* Controla a largura do texto */
+            text-align: justify;
+            margin-bottom: 20px;
+            margin-top: 10%;
+        }
+        .signature {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .footer {
+            font-size: 12px;
+            text-align: center;
+            margin-top: 20px;
+            margin-left: -44%;
+            color: orange;
+        }
+
+        @media print {
+          body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Century Schoolbook', serif;
+            display: block;
+            flex-direction: column; /* Orienta os filhos da flexbox em coluna */
+            align-items: center; /* Centraliza os elementos horizontalmente */
+            justify-content: center; /* Centraliza os elementos verticalmente */
+            background: white;
+        }
+         .logo {
+            width: 40%;  /* fixa um tamanho específico */
+            height: auto;  /* mantém a proporção */
+            margin: -9%;
+            margin-left: 58%;
+            size: 100px;
+        }
+
+        
+        .container {
+            width: 600px;
+            min-height: 600px;  /* define uma altura mínima para o container */
+        }
+
+        .header-text {
+            font-size: 14px;
+            text-align: center;
+            margin: -60px 0 20px;
+        }
+        .body-text {
+            width: 600px; /* Controla a largura do texto */
+            text-align: justify;
+            margin-bottom: 20px;
+            margin-top: 40%;
+            margin-left: 10%;
+        }
+        .signature {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .footer {
+            font-size: 12px;
+            text-align: center;
+            margin-top: 25%;
+            margin-left: -60%;
+            color: orange;
+        }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-section">
+        <img src="/img/logogaa.jpeg" class="logo" alt="Gomes Altimari Advogados">
+    </div>
+     <div class="header-text">
+        EXCELENTÍSSIMO SENHOR DOUTOR JUIZ DE DIREITO DA <%=dadosEspecificos.vara%>ª VARA CÍVEL DO FORO DA COMARCA DE <%=dadosEspecificos.cidade == 'Não há' ? 'SÃO PAULO' : dadosEspecificos.cidade.toUpperCase()%>/SP.
+    </div> 
+    <%
+    const nomeCompleto = dadosEspecificos.nome.split(' '); 
+    const nome = nomeCompleto[0].charAt(0).toUpperCase() + nomeCompleto[0].slice(1);
+    const sobrenome = nomeCompleto[1].charAt(0).toUpperCase() + nomeCompleto[1].slice(1);
+    %>
+    <div class="body-text">
+        <p>Cumprimento de sentença sob o nº <%=dadosEspecificos.processo%></p>
+        <p><%=sobrenome%>, já qualificada nos autos do cumprimento de sentença movido contra <%=sobrenome%> ("<%=nome%>"), igualmente qualificada, por meio de seu advogado que ao final assina, vem à presença de Vossa Excelência, manifestar ciência acerca do r. despacho proferido pelo Juízo.</p>
+        <p>Sem prejuízo, requer, por fim, que todas as intimações e demais atos praticados sejam feitos em nome do advogado ALEX SANDRO GOMES ALTIMARI, inscrito na OAB/SP sob o nº 177.936, sob pena de nulidade.</p>
+    </div>
+
+    <div class="signature">
+      Pede deferimento.<br>
+
+      <%= dadosEspecificos.cidade == 'Não há' ? 'São Paulo' : dadosEspecificos.cidade %>, 13 de setembro de 2024.
+    </div>
+    <br>
+    <div class="signature">
+        <%=providenciaPeticao.nomeCompleto.toUpperCase()%><br>
+        <%=providenciaPeticao.oab%>
+    </div>
+    <div class="footer">
+        www.gomesaltimari.com.br
+    </div>
+</body>
+</html>

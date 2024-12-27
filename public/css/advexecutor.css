@@ -1,0 +1,293 @@
+body {
+  font-family: "Segoe UI", Arial, sans-serif; /* Fonte mais próxima ao design */
+  height: 100%; /* Define a altura do corpo e do HTML para 100% */
+  margin: 0; /* Remove margens padrão */
+  overflow: hidden; /* Esconde a barra de rolagem */
+}
+
+.fa {
+  margin-right: 5px; /* Espaçamento entre ícones */
+}
+
+.img-fluid {
+  margin-left: 19%;
+  max-width: 96%;
+}
+
+.custom-navbar {
+  background-color: #012777;
+  height: 100px; /* Ajuste a altura conforme necessário */
+  position: relative;
+}
+
+.custom-navbar .navbar-brand img.navbar-logo {
+  height: 150px; /* Ajuste a altura conforme necessário */
+  max-height: 100%;
+}
+
+.custom-navbar .navbar-nav {
+  margin-left: 20px; /* Centraliza os itens do menu */
+}
+
+.custom-navbar .nav-link:hover {
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  padding: 2px;
+}
+
+.container-principal {
+  min-height: 78vh; /* Garante que o contêiner principal ocupe no mínimo a altura total da tela */
+  display: flex;
+  flex-direction: column; /* Orientação em coluna para os conteúdos internos */
+  justify-content: center; /* Centraliza os conteúdos internamente */
+  align-items: center; /* Alinha os conteúdos no centro */
+}
+
+.providencias h1 {
+  font-size: 30px; /* Tamanho da fonte aumentado */
+  margin-bottom: 10px; /* Espaço entre o título e a lista */
+  margin-top: 3%;
+}
+
+.page-title {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.status {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.imagempeticao {
+  display: flex;
+  padding: 20px 0 20px 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 70%;
+}
+
+.left {
+  width: 70%;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column; /* Empilha os botões verticalmente */
+  justify-content: center; /* Centraliza os botões verticalmente no contêiner */
+  align-items: center; /* Alinha os botões à direita */
+  position: absolute; /* Usando posicionamento absoluto */
+  top: 50%; /* Centraliza verticalmente em relação ao contêiner pai */
+  transform: translateY(
+    -50%
+  ); /* Ajusta a posição vertical para exata centralização */
+  right: 10%; /* Mantém os botões à direita */
+}
+
+.btn {
+  border: none;
+  color: white;
+  margin-right: 10px; /* Espaço entre os botões */
+  width: 19vh;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Coloca os itens em coluna em telas menores */
+  }
+}
+
+@media (max-width: 768px) {
+  .button-group {
+    flex-direction: column; /* Empilha os botões verticalmente em telas pequenas */
+  }
+  .btn {
+    margin-bottom: 10px; /* Espaço entre os botões quando empilhados */
+  }
+}
+
+.nav-link.active {
+  color: #ff0000; /* Muda a cor para vermelho, ou qualquer cor que destaque */
+  font-weight: bold; /* Opcionalmente, torna o texto em negrito */
+}
+
+.btn {
+  margin-right: -60px; /* Espaçamento entre botões */
+}
+
+/* Media query para dispositivos menores (abaixo de 768px) */
+@media (max-width: 768px) {
+  .navbar .nav-link {
+    width: 100%; /* Botões da navbar ocupam toda a largura para fácil acesso */
+    padding: 8px 10px; /* Padding reduzido para economizar espaço */
+  }
+
+  .navbar-toggler {
+    display: block; /* Assegura que o toggler está visível */
+  }
+
+  .navbar-collapse {
+    text-align: center; /* Centraliza os itens no menu colapsado */
+  }
+
+  .btn {
+    /* Botões gerais, não apenas na navbar */
+    width: 19vh; /* Facilita o toque em dispositivos menores */
+    margin-bottom: 10px; /* Mais espaço entre botões */
+  }
+
+  .advogados {
+    /* Específico para a seção de advogados */
+    padding: 20px 0; /* Mais padding vertical */
+  }
+
+  .list-group-item {
+    /* Itens de lista para espaçamento adequado */
+    display: block; /* Stack verticalmente */
+    text-align: center; /* Texto centralizado */
+  }
+}
+
+/* Media query para telas médias e grandes */
+@media (min-width: 768px) {
+  .navbar .nav-link {
+    padding: 10px 20px; /* Maior espaço para interação fácil */
+  }
+
+  .container {
+    max-width: 960px; /* Largura máxima para evitar que a tela fique muito larga */
+    margin: auto; /* Centraliza o contêiner */
+  }
+}
+
+/* Media query para dispositivos com largura máxima de 768px */
+@media (max-width: 991px) {
+  .navbar-brand {
+    position: absolute;
+    left: 50%; /* Posiciona a metade da logo no centro */
+    transform: translateX(
+      -50%
+    ); /* Desloca a logo para trás pela metade de sua largura para centralizar exatamente */
+    display: block; /* Garante que a logo será tratada como bloco para centralização */
+  }
+
+  .navbar-toggler {
+    position: relative;
+  }
+
+  .navbar {
+    text-align: center; /* Centraliza os itens da navbar */
+  }
+
+  .navbar-collapse {
+    justify-content: center; /* Usa flexbox para centralizar os itens do menu quando abertos */
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-toggler {
+    display: block; /* Certifica-se que o botão de toggle está visível */
+    margin-right: 10px; /* Adiciona margem à direita para balancear o layout */
+  }
+}
+
+/* Media query para dispositivos com largura máxima de 768px */
+@media (max-width: 991px) {
+  .navbar-toggler {
+    float: right; /* Assegura que o botão de toggle esteja à direita */
+  }
+
+  /* Estilização para o fundo preto e a sobreposição somente em modo responsivo */
+  .navbar-collapse.collapsing,
+  .navbar-collapse.show {
+    display: block;
+    position: fixed;
+    top: 56px; /* Altura da navbar */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.9); /* Fundo preto com transparência */
+    z-index: 1050; /* Certifica que sobreponha outros conteúdos */
+    overflow-y: auto; /* Permite a rolagem se o conteúdo for extenso */
+  }
+
+  .navbar-collapse.collapsing {
+    transition: height 0.35s ease;
+  }
+
+  .navbar-nav {
+    width: 100%; /* Ocupa toda a largura da sobreposição */
+    padding-top: 10px;
+  }
+
+  .navbar-nav .nav-link {
+    color: white; /* Garante que o texto seja legível */
+    padding: 10px 15px; /* Espaçamento adequado */
+    border-bottom: 1px solid #444; /* Divisórias sutis entre itens */
+  }
+}
+
+@media (max-width: 991px) {
+  .navbar-collapse.collapsing {
+    position: absolute;
+    width: 100%;
+    top: 100%; /* Ajusta para ficar logo abaixo da navbar */
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.9); /* Fundo preto semi-transparente */
+    z-index: 1050; /* Eleva acima de outros elementos da página */
+  }
+
+  .navbar-collapse {
+    width: 100%;
+    top: 100%;
+    left: 0;
+    display: flex;
+    flex-direction: column; /* Organiza os links verticalmente */
+  }
+
+  .providencias {
+    font-size: 20px;
+    width: 45%;
+  }
+  #headline {
+    font-size: 30px; /* Tamanho da fonte reduzido */
+  }
+  .container-principal {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 430px) {
+  .button-group {
+    margin: 0dvh;
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 991px) {
+  .container-principal {
+    flex-direction: column;
+    overflow-y: auto; /* Permite rolagem vertical se o conteúdo exceder a altura da tela */
+    align-items: center;
+  }
+}
+
+@media (max-width: 991px) {
+  .imagempeticao {
+    width: 100%;
+    border-left: none; /* Remove a linha que separa as colunas */
+    padding: 20px; /* Adiciona espaço uniforme ao redor */
+  }
+}
+
+@media (max-width: 991px) {
+  .button-group {
+    width: 23vh;
+  }
+}
+
+@media (max-width: 991px) {
+  .img-fluid {
+    margin-top: -1%;
+  }
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela advogado executor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/advexecutor.css">
+    <link rel="icon" type="image/png" href="img/imagemlogo.png">
+</head>
+<body>
+    <%- include('./partials/navbar.ejs') %>
+
+<div class="container">
+    <h1 class="page-title" style="color: orange;">Gerando Petição</h1>
+    <div class="card">
+        <div class="card-header">
+        </div>
+        <div class="card-body">
+            <!-- <form method="POST" action="#"> -->
+                <!-- <input class="form-control" type="text" name="title" placeholder="Defina o título do artigo"><br> -->
+                <textarea class="form-control" placeholder="Escreva o artigo aqui!" name="body" id="article"></textarea><br>
+                <button class="btn btn-success">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+    
+    
+        <!-- <div class="col-md-6 providencias">
+            <h1 id="headline">Advogado Executor</h1>
+            <div class="botao">
+                <button class="btn btn-primary">Providência 1 <span class="status">&#10005;</span></button>
+                <br>
+                <button class="btn btn-primary">Providência 2 <span class="status">&#10005;</span></button>
+                <br>
+                <button class="btn btn-primary">Providência 3 <span class="status">&#10003;</span></button>
+            </div>
+        </div> -->
+        <!-- <div class="imagempeticao">
+            <div class="left">
+                <img src="/img/imagempeticao.png" alt="Documento de Petição" class="img-fluid">
+            </div>
+        </div> -->
+        </div>  
+        </div>
+        <div class="button-group">
+            <button class="btn btn-primary">Vincular dados</button>
+            <br>
+            <button class="btn btn-primary">Editar</button>
+            <br>
+            <!-- <button class="btn">Gerar</button>
+            <br>
+            <button class="btn">Gerar e adicionar</button> -->
+            <button class="btn btn-primary">Cancelar</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="scripts.js"></script>
+    <script src="/tinymce/tinymce.min.js"></script>
+    <!-- <script src="https://cdn.tiny.cloud/1/SUA_APIKEY/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script> -->
+    <script>
+        tinymce.init({
+            language: 'pt_BR',
+            selector: '#article',
+            plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak searchreplace wordcount fullscreen insertdatetime media save table paste emoticons',
+        });
+    </script>
+    
+</body>
+</html>

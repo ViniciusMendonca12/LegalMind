@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela do Advogado Controlador 2</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+
+    <link rel="stylesheet" href="/css/gerenciarProvidencias.css">
+    <link rel="icon" type="image/png" href="img/imagemlogo.png">
+</head>
+
+<body>
+    <%- include('./partials/navbar.ejs') %>
+
+
+        <section id="cabecalho">
+            <div class="container">
+                <h1 class="page-title" style="color: orange;">Gerenciar Providências</h1>
+            </div>
+        </section>
+
+        <section id="filtro">
+            <div class="row">
+                <div class="col-md">
+                    <div class="input-group">
+                        <div class="wrapperSearch">
+                            <div class="search-input">
+                                <a href="" target="_blank" hidden></a>
+                                <input type="text" placeholder="Procure pela providência..." id="inputNome">
+                                <input type="hidden" id="idPessoaInput">
+                                <div id="autocom-box" class="autocom-box">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row" id="linhaFiltros">
+                <div class="col-md-3">
+                    <div class="form-floating">
+                        <select class="form-select" id="selectDataConclusao">
+                            <option selected value="0">Data de Conclusão</option>
+                            <option value="1">Data: Crescente</option>
+                            <option value="2">Data: Decrescente</option>
+                        </select>
+                        <label for="selectDataConclusao">Classificar por</label>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <select class="form-select" id="selectAdvogados">
+                            <option value="0" selected>Advogados</option>
+                            <% advogados.forEach((advogado)=> { %>
+                                <option value="<%=advogado.id%>">
+                                    <%=advogado.nomeCompleto%>
+                                </option>
+
+                                <% })%>
+                        </select>
+                        <label for="selectAdvogados">Filtrar por</label>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-floating">
+                        <select class="form-select" id="selectCompromissoTarefa">
+                            <option value="0" selected>Selecionar Tipo</option>
+                            <option value="1">Tarefa</option>
+                            <option value="2">Compromisso</option>
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md">
+                    <div class="form-floating">
+                        <select class="form-select" id="selectStatus">
+                            <option value="0" selected>Selecionar Status</option>
+                            <option value="1">Concluido</option>
+                            <option value="2">Pendente</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button id="botaoBuscar" class="btn btn-success"> Buscar </button>
+                    <button id="botaoRedefinir" class="btn btn-warning"> Redefinir </button>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="providencias" class="mb-5">
+            <div class="row text-center mt-5" id="testeee">
+
+                <%providencias.forEach((providencia)=>{%>
+
+                    <div class="col-4">
+                        <h6> <strong>Providência:</strong>
+                            <%= providencia.tituloProvidencia %>
+                        </h6>
+                        <p><strong>Ação:</strong>
+                            <%= providencia.descricaoProvidencia %>
+                        </p>
+                        <p><strong>É um compromisso?</strong>
+                            <%= providencia.ehCompromisso==1 ? "Sim" : "Não" %>
+                        </p>
+                        <p><strong>Data de Conclusão:</strong>
+                            <%= providencia.dataConclusao %>
+                        </p>
+
+                        <%if(providencia.ehCompromisso==1){%>
+                            <p><strong>Hora de Conclusão:</strong>
+                                <%= providencia.horaConclusao %>
+                            </p>
+                            <%}%>
+                                <p><strong>Foi Concluida?:</strong>
+                                    <%= providencia.concluido==1 ? "Sim" : "Não" %>
+                                </p>
+
+                                <p><strong>Advogado Vinculado:</strong>
+                                    <%= providencia.nomeCompleto %>
+                                </p>
+
+                                <%if(providencia.observacao !=undefined){%>
+                                    <p><strong>Observação:</strong>
+                                        <%= providencia.observacao %>
+                                    </p>
+                                    <%}%>
+
+                                        <% if(idAdvogadoVinculado !=0 &&
+                                            idAdvogadoVinculado.id==providencia.idAdvogadoVinculado ){ %>
+                                            <div class="dropdown">
+                                                <button class="btn btn-primary dropdown-toggle" type="button"
+                                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Realizar Ações
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" onclick="marcarComoConcluida('<%= providencia.id %>')">Marcar como concluida</a></li>
+                                                    <li><a class="dropdown-item"
+                                                            onclick="editarProvidenciaModal('<%= providencia.id %>')">Editar</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item"
+                                                            onclick="gerarPeticao('<%= providencia.id %>')">Gerar
+                                                            Petição</a></li>
+                                                    <li><a class="dropdown-item"
+                                                            onclick="vincularHighQ('<%= providencia.id %>')">Vincular
+                                                            HighQ</a></li>
+                                                    <li><a class="dropdown-item"
+                                                            onclick="acessarHighQ('<%= providencia.id %>')">Acessar
+                                                            HighQ</a></li>
+                                                    <li><a class="dropdown-item"
+                                                            onclick="deletarProvidencia('<%= providencia.id %>')"
+                                                            class="btnDeletar">Deletar</a></li>
+                                                </ul>
+                                            </div>
+                                            <%}%>
+                    </div>
+
+                    <% })%>
+
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h4>Vínculo com o HighQ</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <label for="linkInput" class="form-label">Digite o link:</label>
+                                        <input type="url" class="form-control" id="linkHighQInput"
+                                            placeholder="https://example.com" required>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Fechar</button>
+                                        <button type="button" id="salvarAlteraçõesModal" class="btn btn-primary">Salvar
+                                            alterações</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="modalAcessarHighQ" tabindex="-1" role="dialog"
+                            aria-labelledby="LabelAcessarHighQ" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="LabelAcessarHighQ">Título do Modal de Acesso</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <label for="linkInput" class="form-label">Acesse o HighQ clicando no link
+                                            abaixo</label>
+                                        <br>
+                                        <a id="linkAcessoHighQ" target="_blank">Ir para HighQ</a>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="modalEditarProvidencia" tabindex="-1" role="dialog"
+                            aria-labelledby="LabelEditarProvidencia" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="LabelEditarProvidencia">Título do Modal de Acesso
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div style="text-align: left;" class="form-group">
+                                            <label for="tituloProvidencia" class="form-label">Título</label>
+                                            <input type="text" class="form-control" id="tituloProvidencia"
+                                                placeholder="Título da providência" required>
+                                            <input type="number" id="idProvidencia" hidden>
+                                        </div>
+                                        <div style="text-align: left;" class="form-group">
+                                            <label for="descricaoProvidencia" class="form-label">Descrição</label>
+                                            <textarea class="form-control" id="descricaoProvidencia" rows="3"
+                                                placeholder="Descrição da providência" required></textarea>
+                                        </div>
+                                        <div class="form-row">
+                                            <div id="divAdvogados"></div>
+
+                                        </div>
+
+                                        <div style="margin-top: 15px; text-align: left; margin-bottom: 15px;"
+                                            class="form-row">
+                                            <label>
+                                                <input type="checkbox" class="comp-tarefa-checkbox" value="compromisso"
+                                                    id="checkboxCompromisso"> Compromisso
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" checked class="comp-tarefa-checkbox"
+                                                    value="tarefa" id="checkboxTarefa"> Tarefa
+                                            </label>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div id="dataHoraConclusao" style="display: none;">
+                                                <div class="form-group">
+                                                    <label for="dataConclusao">Data de Conclusão:</label>
+                                                    <input type="date" class="form-control" id="dataConclusao">
+                                                </div>
+                                                <div class="form-group" id="horaConclusaoGroup" style="display: none;">
+                                                    <label for="horaConclusao">Hora de Conclusão:</label>
+                                                    <input type="time" class="form-control" id="horaConclusao">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="observacao" class="form-label">Observação</label>
+                                            <textarea class="form-control" id="observacao" rows="3"
+                                                placeholder="Observações adicionais"></textarea>
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger"
+                                            data-dismiss="modal">Fechar</button>
+                                        <button type="button" class="btn btn-success" onclick="editarProvidencia()"
+                                            data-dismiss="modal">Editar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+            </div>
+
+        </section>
+
+        <!-- <ul class="list-unstyled providencias">
+                <li><button class="btn btn-primary">Juntar procuração</button></li>
+                <li><button class="btn btn-primary">Juntar guias de custas</button></li>
+                <li><button class="btn btn-primary">Apresentar contestação</button></li>
+            </ul> -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+            integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+            crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+
+</body>
+
+</html>
+
+
+
+<script>
+
+    $("#botaoBuscar").click(function () {
+        const dataConclusao = $("#selectDataConclusao").val()
+        const advogado = $("#selectAdvogados").val()
+        const compromissoTarefa = $("#selectCompromissoTarefa").val()
+        const status = $("#selectStatus").val()
+
+        let url = '/providencias/filtro';
+        let params = [];
+
+        if (dataConclusao) params.push(`dataConclusao=${dataConclusao}`);
+        if (advogado) params.push(`advogado=${advogado}`);
+        if (compromissoTarefa) params.push(`compromissoTarefa=${compromissoTarefa}`);
+        if (status) params.push(`status=${status}`);
+
+
+        if (params.length > 0) {
+            url += '?' + params.join('&');
+        }
+
+        axios.get(url)
+            .then(response => {
+                atualizarListaCursos(response.data);
+
+            })
+            .catch(error => {
+                console.error('Erro ao buscar dados:', error);
+            });
+
+    })
+
+    function atualizarListaCursos(providencias) {
+        var elemento = document.getElementById('testeee');
+
+
+        while (elemento.firstChild) {
+            elemento.removeChild(elemento.firstChild)
+        }
+
+        if (providencias <= 0) {
+            var cursoElement = document.createElement('div');
+            cursoElement.innerHTML = `<h3 style="margin: 0px 0px 10px 10px"> Nenhum resultado encontrado </h3>`
+            elemento.appendChild(cursoElement)
+
+        }
+        elemento.classList.add('row');
+
+        providencias.forEach(providencia => {
+            var cursoElement = document.createElement('div');
+            cursoElement.classList.add('col-4'); // Adiciona a classe 'col-4' à div criada
+            cursoElement.innerHTML = `
+                <h6><strong>Providência:</strong> ${providencia.tituloProvidencia}</h6>
+                <p><strong>Ação:</strong> ${providencia.descricaoProvidencia}</p>
+                <p><strong>É um compromisso?</strong> ${providencia.ehCompromisso == 1 ? "Sim" : "Não"}</p>
+                <p><strong>Data de Conclusão:</strong> ${providencia.dataConclusao}</p>
+
+                ${providencia.ehCompromisso == 1 ? `
+                    <p><strong>Hora de Conclusão:</strong> ${providencia.horaConclusao}</p>
+                ` : ''}
+
+                <p><strong>Foi Concluida?:</strong> ${providencia.concluido == 1 ? "Sim" : "Não"}</p>
+                <p><strong>Advogado Vinculado:</strong> ${providencia.nomeCompleto}</p>
+
+                ${providencia.observacao !== undefined ? `
+                    <p><strong>Observação:</strong> ${providencia.observacao}</p>
+                ` : ''}
+            `;
+
+            elemento.appendChild(cursoElement);
+        });
+
+    }
+
+
+    $("#botaoRedefinir").click(function () {
+        $("#selectDataConclusao").val(0)
+        $("#selectAdvogados").val(0)
+        $("#selectCompromissoTarefa").val(0)
+        $("#selectStatus").val(0)
+        $("#botaoBuscar").click()
+        $("#inputNome").val("")
+
+    })
+
+
+    function acessarHighQ(idProvidencia) {
+
+        axios.get(`/link/providencia/${idProvidencia}`)
+            .then(function (response) {
+                $('#linkAcessoHighQ').attr('href', response.data.link);
+
+                $("#modalAcessarHighQ").modal('show')
+
+            })
+            .catch(function (error) {
+                console.error('Erro:', error);
+            });
+
+    }
+
+    function vincularHighQ(idProvidencia) {
+        $("#exampleModal").modal('show')
+
+
+        $("#salvarAlteraçõesModal").on("click", function () {
+            var linkVinculo = $("#linkHighQInput").val()
+
+            axios.patch(`/vincular/providencia/${idProvidencia}`, { linkVinculo: linkVinculo })
+                .then(function (response) {
+                    alert('Providência vinculada com sucesso!');
+                    $("#exampleModal").modal('hide')
+                    setTimeout(function() {
+                        location.reload();
+                    }, 3000)
+
+                })
+                .catch(function (error) {
+                    console.error('Erro:', error);
+                    alert('Erro ao vincular a providência.');
+                });
+
+        })
+
+
+    }
+
+
+
+    function deletarProvidencia(idProvidencia) {
+
+        if (confirm('Tem certeza que deseja deletar essa providência?')) {
+            $.ajax({
+                url: `/providencia/${idProvidencia}`,
+                type: 'DELETE',
+                contentType: 'application/json',
+                success: function (response) {
+                    alert('Providência deletada com sucesso!');
+                    setTimeout(function() {
+                        location.reload();
+                    }, 3000)
+
+                },
+                error: function (xhr, status, error) {
+                    console.error('Erro:', error);
+                    alert('Erro ao deletar a providência.');
+                }
+            });
+        }
+    }
+
+
+   
+
+
+    function toggleDataHoraFields() {
+        if ($("#checkboxCompromisso").is(':checked')) {
+            $("#dataHoraConclusao").show();
+            $("#horaConclusaoGroup").show();
+        } else if ($("#checkboxTarefa").is(':checked')) {
+            $("#dataHoraConclusao").show();
+            $("#horaConclusaoGroup").hide();
+        } else {
+            $("#dataHoraConclusao").hide();
+        }
+    }
+
+    $(".comp-tarefa-checkbox").on('change', function () {
+        if ($(this).val() === 'compromisso') {
+            $("#checkboxTarefa").prop('checked', false);
+        } else {
+            $("#checkboxCompromisso").prop('checked', false);
+        }
+
+        toggleDataHoraFields();
+    });
+
+    function abrirModalEditar(providencia) {
+        if (providencia.ehCompromisso == 1) {
+            $("#checkboxCompromisso").prop('checked', true);
+            $("#checkboxTarefa").prop('checked', false);
+        } else {
+            $("#checkboxCompromisso").prop('checked', false);
+            $("#checkboxTarefa").prop('checked', true);
+        }
+
+        toggleDataHoraFields();
+    }
+
+    function dropDownAdvogados(idAdvogadoVinculado) {
+        return axios.get(`/advogados`)
+            .then(function (response) {
+                var advogados = response.data;
+
+                // Criar o elemento select
+                var selectElement = $('<select></select>').attr('id', 'selectAdvogados').addClass('form-control');
+
+                // Adicionar uma opção padrão
+                selectElement.append($('<option></option>').attr('value', '0').text('Selecione um advogado para vincular'));
+
+                advogados.forEach(function (advogado) {
+                    selectElement.append(
+                        $('<option></option>')
+                            .attr('value', advogado.id)
+                            .text(advogado.nomeCompleto)
+                    );
+                });
+
+                $('#divAdvogados').html(selectElement);
+
+                setTimeout(function () {
+                    $("#selectAdvogados").val(idAdvogadoVinculado);
+                }, 0);
+
+                return selectElement;
+            })
+            .catch(function (error) {
+                console.error('Erro:', error);
+                alert('Erro ao obter os advogados.');
+            });
+    }
+
+
+    function editarProvidenciaModal(idProvidencia) {
+        axios.get(`/providencia/${idProvidencia}`)
+            .then(function (response) {
+                var providencia = response.data.providencia;
+
+                // Preencher os campos da providência
+                $("#tituloProvidencia").val(providencia.tituloProvidencia);
+                $("#descricaoProvidencia").val(providencia.descricaoProvidencia);
+                $("#dataConclusao").val(formatarDataISO(providencia.dataConclusao));
+                $("#horaConclusao").val(providencia.horaConclusao);
+                $("#observacao").val(providencia.observacao);
+                $("#idProvidencia").val(providencia.id)
+
+                abrirModalEditar(providencia)
+                dropDownAdvogados(providencia.idAdvogadoVinculado)
+
+                // Abrir o modal após garantir que todos os dados foram preenchidos
+                $("#modalEditarProvidencia").modal('show');
+            })
+            .catch(function (error) {
+                console.error('Erro ao obter a providência:', error);
+                alert('Erro ao obter a providência.');
+            });
+    }
+
+    function editarProvidencia() {
+
+        var tituloProvidencia    = $("#tituloProvidencia").val();
+        var descricaoProvidencia = $("#descricaoProvidencia").val();
+        var dataConclusao        = $("#dataConclusao").val();
+        var horaConclusao        = $("#horaConclusao").val();
+        var observacao           = $("#observacao").val();
+        var advogadoVinculado    = $("#selectAdvogados").val()
+        var idProvidencia        = $("#idProvidencia").val()
+
+        var ehCompromisso = 0;
+
+        var compromissoCheckbox = $("#checkboxCompromisso");
+
+        var tarefaCheckbox = $("#checkboxTarefa")
+
+        if (compromissoCheckbox.prop("checked")) {
+            ehCompromisso = 1;
+        } else if ( tarefaCheckbox.prop("checked")) {
+            ehCompromisso = 0;
+        }
+
+        var editarProvidencia =
+            {
+                tituloProvidencia: tituloProvidencia,
+                descricaoProvidencia: descricaoProvidencia,
+                ehCompromisso: ehCompromisso,
+                observacao: observacao,
+                idAdvogadoVinculado: advogadoVinculado,
+                dataConclusao: dataConclusao,
+                horaConclusao: horaConclusao,
+
+            }
+            var ehValido = true;
+
+            if (editarProvidencia.ehCompromisso === 1) {
+                if (editarProvidencia.tituloProvidencia === "" ||
+                    editarProvidencia.descricaoProvidencia === "" ||
+                    editarProvidencia.idAdvogadoVinculado === "" ||
+                    editarProvidencia.dataConclusao === "" ||
+                    editarProvidencia.horaConclusao === "") {
+
+                    alert("Preencha todos os campos para o compromisso.");
+                    ehValido = false;
+                }
+            } else if (editarProvidencia.ehCompromisso === 0) {
+                if (editarProvidencia.tituloProvidencia === "" ||
+                    editarProvidencia.descricaoProvidencia === "" ||
+                    editarProvidencia.idAdvogadoVinculado === "" ||
+                    editarProvidencia.dataConclusao === "") {
+
+                    alert("Preencha todos os campos para a tarefa.");
+                    ehValido = false;
+                }
+            }
+
+            if (ehValido) {
+                axios.put(`/editar/providencia/${idProvidencia}`, { editarProvidenciaDados: editarProvidencia })
+                .then(function (response) {
+                    alert('Providência editada com sucesso!');
+                    $("#modalEditarProvidencia").modal('hide')
+                    setTimeout(function() {
+                        location.reload();
+                    }, 3000)
+
+                })
+                .catch(function (error) {
+                    console.error('Erro:', error);
+                    alert('Erro ao editar a providência.');
+                });
+            }
+            
+        console.log(editarProvidencia)
+    }
+
+
+    function gerarPeticao(idProvidencia){
+        window.open(`/documento/peticao/${idProvidencia}`, '_blank');
+
+    }
+
+    function marcarComoConcluida(idProvidencia){
+        axios.patch("/providencia/marcar-concluida/"+idProvidencia)
+        .then(function(response){
+            alert("Providência marcada como concluida com sucesso")
+            setTimeout(function() {
+                location.reload();
+            }, 3000)
+        })
+        .catch(function(error){
+            alert("Erro ao marcar providência como concluida")
+
+        })
+    }
+
+    function formatarDataISO(isoDate) {
+        const data = new Date(isoDate);
+
+        const ano = data.getFullYear();
+        const mes = String(data.getMonth() + 1).padStart(2, '0');
+        const dia = String(data.getDate()).padStart(2, '0');
+
+        return `${ano}-${mes}-${dia}`; // Formato yyyy-mm-dd
+    }
+
+
+
+
+
+
+</script>

@@ -1,0 +1,304 @@
+body {
+  font-family: "Segoe UI", Arial, sans-serif; /* Fonte mais próxima ao design */
+}
+
+.fa {
+  margin-right: 5px; /* Espaçamento entre ícones */
+}
+
+.custom-navbar {
+  background-color: #012777;
+  height: 100px; /* Ajuste a altura conforme necessário */
+  position: relative;
+}
+
+.custom-navbar .navbar-brand img.navbar-logo {
+  height: 150px; /* Ajuste a altura conforme necessário */
+  max-height: 100%;
+}
+
+.custom-navbar .navbar-nav {
+  margin-left: 20px; /* Centraliza os itens do menu */
+}
+
+.custom-navbar .nav-link:hover {
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  padding: 2px;
+}
+
+
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.page-title {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.search-section h2,
+.lawyers-section h2 {
+  background-color: #0047ab;
+  color: white;
+  padding: 10px;
+}
+
+.search-results .result-item {
+  background-color: #e0e0e0;
+  border: 1px solid #000;
+  padding: 10px;
+  margin-top: 5px;
+}
+
+.lawyers-section {
+  background-color: #f0f0f0;
+  padding: 10px;
+}
+
+/* Estilos para garantir que a seção de advogados esteja corretamente formatada */
+.lawyers-section .lawyer-item {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.lawyers-section .lawyer-item img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.lawyers-section .lawyer-item .name {
+  font-weight: bold;
+}
+
+.next-button {
+  padding: 7px 33px; /* Ajuste de padding para maior área de clique */
+  display: flex;
+  position: absolute; /* Posicionamento absoluto */
+  bottom: 30px; /* Espaço do fundo do contêiner */
+  right: 628px; /* Espaço da direita do contêiner */
+  background-color: orange;
+  color: rgb(255, 255, 255);
+  border-radius: 10px;
+}
+
+.nav-link.active {
+  color: #ff0000; /* Muda a cor para vermelho, ou qualquer cor que destaque */
+  font-weight: bold; /* Opcionalmente, torna o texto em negrito */
+}
+
+.btn-orange {
+  background-color: orange; /* Botão laranja para 'Próximo' */
+  color: rgb(0, 0, 0);
+  padding: 10px 0;
+  width: 110%;
+  border: none;
+}
+
+/* Media query para dispositivos menores (abaixo de 768px) */
+@media (max-width: 768px) {
+  .navbar .nav-link {
+    width: 100%; /* Botões da navbar ocupam toda a largura para fácil acesso */
+    padding: 8px 10px; /* Padding reduzido para economizar espaço */
+  }
+
+  .navbar-toggler {
+    display: block; /* Assegura que o toggler está visível */
+  }
+
+  .navbar-collapse {
+    text-align: center; /* Centraliza os itens no menu colapsado */
+  }
+
+  .btn {
+    /* Botões gerais, não apenas na navbar */
+    width: 100%; /* Facilita o toque em dispositivos menores */
+    margin-bottom: 10px; /* Mais espaço entre botões */
+  }
+
+  .advogados {
+    /* Específico para a seção de advogados */
+    padding: 20px 0; /* Mais padding vertical */
+  }
+
+  .list-group-item {
+    /* Itens de lista para espaçamento adequado */
+    display: block; /* Stack verticalmente */
+    text-align: center; /* Texto centralizado */
+  }
+}
+
+/* Media query para telas médias e grandes */
+@media (min-width: 768px) {
+  .navbar .nav-link {
+    padding: 10px 20px; /* Maior espaço para interação fácil */
+  }
+
+  .container {
+    max-width: 960px; /* Largura máxima para evitar que a tela fique muito larga */
+    margin: auto; /* Centraliza o contêiner */
+  }
+}
+
+/* Media query para dispositivos com largura máxima de 768px */
+@media (max-width: 991px) {
+  .navbar-brand {
+    position: absolute;
+    left: 50%; /* Posiciona a metade da logo no centro */
+    transform: translateX(
+      -50%
+    ); /* Desloca a logo para trás pela metade de sua largura para centralizar exatamente */
+    display: block; /* Garante que a logo será tratada como bloco para centralização */
+  }
+
+  .navbar-toggler {
+    position: relative;
+  }
+
+  .navbar {
+    text-align: center; /* Centraliza os itens da navbar */
+  }
+
+  .navbar-collapse {
+    justify-content: center; /* Usa flexbox para centralizar os itens do menu quando abertos */
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-toggler {
+    display: block; /* Certifica-se que o botão de toggle está visível */
+    margin-right: 10px; /* Adiciona margem à direita para balancear o layout */
+  }
+}
+
+/* Media query para dispositivos com largura máxima de 768px */
+@media (max-width: 991px) {
+  .navbar-toggler {
+    float: right; /* Assegura que o botão de toggle esteja à direita */
+  }
+
+  /* Estilização para o fundo preto e a sobreposição somente em modo responsivo */
+  .navbar-collapse.collapsing,
+  .navbar-collapse.show {
+    display: block;
+    position: fixed;
+    top: 56px; /* Altura da navbar */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.9); /* Fundo preto com transparência */
+    z-index: 1050; /* Certifica que sobreponha outros conteúdos */
+    overflow-y: auto; /* Permite a rolagem se o conteúdo for extenso */
+  }
+
+  .navbar-collapse.collapsing {
+    transition: height 0.35s ease;
+  }
+
+  .navbar-nav {
+    width: 100%; /* Ocupa toda a largura da sobreposição */
+    padding-top: 10px;
+  }
+
+  .navbar-nav .nav-link {
+    color: white; /* Garante que o texto seja legível */
+    padding: 10px 15px; /* Espaçamento adequado */
+    border-bottom: 1px solid #444; /* Divisórias sutis entre itens */
+  }
+}
+
+@media (max-width: 991px) {
+  .navbar-collapse.collapsing {
+    position: absolute;
+    width: 100%;
+    top: 100%; /* Ajusta para ficar logo abaixo da navbar */
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.9); /* Fundo preto semi-transparente */
+    z-index: 1050; /* Eleva acima de outros elementos da página */
+  }
+
+  .navbar-collapse {
+    width: 100%;
+    top: 100%;
+    left: 0;
+    display: flex;
+    flex-direction: column; /* Organiza os links verticalmente */
+  }
+}
+
+.providencia-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.providencia-item input[type="checkbox"] {
+  margin-right: 10px;
+}
+.providencia-item label {
+  margin: 0;
+}
+
+.providenciaCheckbox{
+  width: 50px;
+  height: 50px;
+  border: 3px rgb(212, 133, 6) solid;
+  margin: auto;
+  text-align: center;
+}
+
+.providenciaCheckbox:hover{
+  background-color: rgb(125, 125, 170);
+}
+
+.espacoCheck{
+  border: 1px blue solid;
+  border-radius: 5px;
+  border-right: none;
+}
+
+.espacoProvidencia{
+  padding-left: 40px;
+  background-color: #bacae1;
+  border-radius: 5px;
+  border: 1px blue solid;
+  border-left: none;
+  margin-left: -10px;
+
+}
+
+.inputTitulo{
+  width: 100%;
+}
+
+.inputDescricao{
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.espacoProvidencia h5{
+  color: rgb(0, 0, 0);
+}
+
+
+.publicacao{
+  border: 1px solid black;
+}
+
+.inputDataCriacao{
+  display: none;
+}
+
+.campo {
+  margin-top: 10px;
+}
+.campo input[type="text"], .campo input[type="date"], .campo input[type="time"] {
+  display: block;
+  margin: 5px 0;
+}
+.group {
+  margin-bottom: 20px;
+}

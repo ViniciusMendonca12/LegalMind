@@ -1,0 +1,391 @@
+body {
+  font-family: "Segoe UI", Arial, sans-serif; /* Fonte mais próxima ao design */
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.fa {
+  margin-right: 5px; /* Espaçamento entre ícones */
+}
+
+.custom-navbar {
+  background-color: #012777;
+  height: 100px; /* Ajuste a altura conforme necessário */
+  position: relative;
+}
+
+h4 {
+  margin-left: 21%;
+}
+
+.custom-navbar .navbar-brand img.navbar-logo {
+  height: 150px; /* Ajuste a altura conforme necessário */
+  max-height: 100%;
+}
+
+.custom-navbar .navbar-nav {
+  margin-left: 20px; /* Centraliza os itens do menu */
+}
+
+.custom-navbar .nav-link:hover {
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  padding: 2px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.page-title {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.page-title2 {
+  margin-top: -45px;
+  margin-bottom: 20px;
+  margin-left: 60px;
+  font-size: 30px;
+}
+
+.process-info {
+  font-size: 12px; /* Mantém a fonte menor para caber mais texto */
+  background-color: #f8f8f8;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin: 20px; /* Ajuste conforme necessário */
+  width: 78%; /* Ajusta a largura para ser menor */
+  height: 550px; /* Aumenta a altura */
+  box-sizing: border-box; /* Inclui padding no cálculo da largura/altura */
+  text-align: justify;
+}
+
+.providencias li button {
+  width: 100%; /* Faz o botão ocupar toda a largura disponível */
+  padding: 12px 20px; /* Aumenta o padding para fazer o botão maior */
+  font-size: 16px; /* Aumenta o tamanho da fonte para melhor legibilidade */
+  margin-bottom: 10px; /* Assegura um espaço entre os botões */
+  background-color: #0047ab; /* Cor azul conforme o design */
+  color: white; /* Texto branco para contraste */
+  border: none; /* Remove qualquer borda padrão */
+}
+
+.next-button {
+  padding: 10px 20px; /* Ajuste de padding para maior área de clique */
+  display: flex;
+  position: absolute; /* Posicionamento absoluto */
+  bottom: 30px; /* Espaço do fundo do contêiner */
+  right: 70px; /* Espaço da direita do contêiner */
+  background-color: orange;
+  color: white;
+  border-radius: 10px;
+}
+
+/* Ajuste na responsividade para manter tudo alinhado e visível */
+@media (max-width: 768px) {
+  .providencias li button,
+  .next-button .btn-orange {
+    width: 100%; /* Garante que os botões ajustem-se ao novo layout de tela */
+  }
+
+  .next-button {
+    position: static; /* Remove o posicionamento absoluto em telas menores */
+    margin-top: 20px; /* Espaço extra acima do botão 'Próximo' */
+  }
+}
+
+@media (max-width: 992px) {
+  .row {
+    flex-direction: column; /* Empilha as colunas verticalmente em telas menores */
+    .col-md-8,
+    .col-md-4 {
+      width: 100%; /* Faz as colunas ocuparem toda a largura em dispositivos móveis */
+    }
+  }
+}
+
+/* Media query para dispositivos menores (abaixo de 768px) */
+@media (max-width: 768px) {
+  .navbar .nav-link {
+    width: 100%; /* Botões da navbar ocupam toda a largura para fácil acesso */
+    padding: 8px 10px; /* Padding reduzido para economizar espaço */
+  }
+
+  .navbar-toggler {
+    display: block; /* Assegura que o toggler está visível */
+  }
+
+  .navbar-collapse {
+    text-align: center; /* Centraliza os itens no menu colapsado */
+  }
+
+  .btn {
+    /* Botões gerais, não apenas na navbar */
+    width: 100%; /* Facilita o toque em dispositivos menores */
+    margin-bottom: 10px; /* Mais espaço entre botões */
+  }
+
+  .advogados {
+    /* Específico para a seção de advogados */
+    padding: 20px 0; /* Mais padding vertical */
+  }
+
+  .list-group-item {
+    /* Itens de lista para espaçamento adequado */
+    display: block; /* Stack verticalmente */
+    text-align: center; /* Texto centralizado */
+  }
+}
+
+/* Media query para telas médias e grandes */
+@media (min-width: 768px) {
+  .navbar .nav-link {
+    padding: 10px 20px; /* Maior espaço para interação fácil */
+  }
+
+  .container {
+    max-width: 960px; /* Largura máxima para evitar que a tela fique muito larga */
+    margin: auto; /* Centraliza o contêiner */
+  }
+}
+
+/* Ajustes finos para itens como ícones e cabeçalhos */
+.navbar .nav-link svg {
+  margin-right: 5px; /* Espaço entre ícone e texto */
+}
+
+.advogados-title {
+  font-size: 1em; /* Tamanho maior para cabeçalho de advogados */
+}
+
+/* Media query para dispositivos com largura máxima de 768px */
+@media (max-width: 991px) {
+  .navbar-brand {
+    position: absolute;
+    left: 50%; /* Posiciona a metade da logo no centro */
+    transform: translateX(
+      -50%
+    ); /* Desloca a logo para trás pela metade de sua largura para centralizar exatamente */
+    display: block; /* Garante que a logo será tratada como bloco para centralização */
+  }
+
+  .navbar-toggler {
+    position: relative;
+  }
+
+  .navbar {
+    text-align: center; /* Centraliza os itens da navbar */
+  }
+
+  .navbar-collapse {
+    justify-content: center; /* Usa flexbox para centralizar os itens do menu quando abertos */
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-toggler {
+    display: block; /* Certifica-se que o botão de toggle está visível */
+    margin-right: 10px; /* Adiciona margem à direita para balancear o layout */
+  }
+}
+
+/* Media query para dispositivos com largura máxima de 768px */
+@media (max-width: 991px) {
+  .navbar-toggler {
+    float: right; /* Assegura que o botão de toggle esteja à direita */
+  }
+
+  /* Estilização para o fundo preto e a sobreposição somente em modo responsivo */
+  .navbar-collapse.collapsing,
+  .navbar-collapse.show {
+    display: block;
+    position: fixed;
+    top: 56px; /* Altura da navbar */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.9); /* Fundo preto com transparência */
+    z-index: 1050; /* Certifica que sobreponha outros conteúdos */
+    overflow-y: auto; /* Permite a rolagem se o conteúdo for extenso */
+  }
+
+  .navbar-collapse.collapsing {
+    transition: height 0.35s ease;
+  }
+
+  .navbar-nav {
+    width: 100%; /* Ocupa toda a largura da sobreposição */
+    padding-top: 10px;
+  }
+
+  .navbar-nav .nav-link {
+    color: white; /* Garante que o texto seja legível */
+    padding: 10px 15px; /* Espaçamento adequado */
+    border-bottom: 1px solid #444; /* Divisórias sutis entre itens */
+  }
+}
+
+@media (max-width: 991px) {
+  .navbar-collapse.collapsing {
+    position: absolute;
+    width: 100%;
+    top: 100%; /* Ajusta para ficar logo abaixo da navbar */
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.9); /* Fundo preto semi-transparente */
+    z-index: 1050; /* Eleva acima de outros elementos da página */
+  }
+
+  .navbar-collapse {
+    width: 100%;
+    top: 100%;
+    left: 0;
+    display: flex;
+    flex-direction: column; /* Organiza os links verticalmente */
+  }
+}
+
+#filtro .row {
+  margin: 30px 44px 0px 44px;
+}
+
+.plantacao {
+  padding-top: 25px;
+  background-color: #d9d9d956;
+  margin-bottom: 30px;
+}
+
+#cursos .containerPlantacaoDentro {
+  height: 300px;
+}
+
+#cursos .imagem {
+  width: 260px;
+  height: 140px;
+  text-align: center;
+  margin: auto;
+  border-radius: 0px;
+}
+
+#cursos h3 {
+  font-size: 18px;
+  text-align: start;
+  margin-top: 5px;
+  margin-bottom: 0px;
+  color: black;
+}
+
+.progress-container {
+  width: 100%;
+  background-color: #f3f3f3;
+  border-radius: 25px;
+  padding: 0px;
+  box-shadow: 0 1px 1px -2px #000, 0 1px 2px #333;
+  margin: auto;
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+
+.progress-bar {
+  width: 0;
+  height: 10px;
+  background: linear-gradient(90deg, #4caf50, #8bc34a);
+  border-radius: 25px;
+  text-align: center;
+  line-height: 20px;
+  transition: width 0.5s;
+}
+
+.progressBar {
+  color: rgb(70, 69, 69);
+  font-size: 8px;
+}
+#cursos p {
+  color: #7b7979;
+  text-align: start;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+#cursos .botao {
+  margin-bottom: 0px;
+}
+
+#cursos .avaliacao {
+  margin-top: 5px;
+  text-align: center;
+}
+
+::selection {
+  color: #fff;
+  background: #664aff;
+}
+
+.wrapperSearch {
+  max-width: 450px;
+  margin: 5px auto;
+}
+
+.wrapperSearch .search-input {
+  background: #fff;
+  width: 100%;
+  border-radius: 5px;
+  position: relative;
+}
+.search-input input {
+  height: 45px;
+  width: 120%;
+  outline: none;
+  border: solid 0.5px #d9d9d9;
+  border-radius: 5px;
+  padding: 0 60px 0 20px;
+  font-size: 15px;
+}
+.search-input.active input {
+  border-radius: 5px 5px 5px 5px;
+}
+.search-input .autocom-box {
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+  max-height: 220px;
+  overflow-y: auto;
+}
+.search-input.active .autocom-box {
+  padding: 10px 8px;
+  opacity: 1;
+  pointer-events: auto;
+}
+.autocom-box li {
+  list-style: none;
+  padding: 8px 12px;
+  display: none;
+  width: 100%;
+  cursor: default;
+  border-radius: 3px;
+}
+.search-input.active .autocom-box li {
+  display: block;
+}
+.autocom-box li:hover {
+  background: #efefef;
+}
+
+#providencias .row {
+  display: flex;         /* Ativa o layout flexível */
+  justify-content: space-around; /* Espaçamento igual entre os itens */
+  align-items: center;   /* Alinha os itens verticalmente */
+  flex-wrap: wrap;       /* Permite que os itens envolvam em várias linhas se necessário */
+  margin: 20px 0;        /* Margem superior e inferior para separação dos outros elementos */
+}
+
+#providencias .col-4 {
+  flex: 0 0 31%;         /* Define a base de cada item para 31% e não permite crescimento ou encolhimento */
+  margin: 10px;          /* Espaço entre os itens */
+  padding: 20px;         /* Espaçamento interno para estética */
+  background-color: #a6a3a3; /* Cor de fundo */
+  border-radius: 10px;   /* Bordas arredondadas */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra para um efeito elevado */
+  text-align: center;    /* Alinha o texto ao centro */
+}
